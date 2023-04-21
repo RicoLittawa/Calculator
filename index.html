@@ -1,0 +1,185 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div id="calc-body">
+            <div class="calc-content">
+                <!-- Output -->
+                <div class="output">
+                    <div class="inputField">
+                        <span id="input1"></span>
+                        <span id="operator"></span>
+                        <span id="input2"></span><br>
+                        <div class="answer">
+                            <span id="answer"></span>
+                        </div>
+                    </div>
+                  
+                </div>
+                <!-- Output -->
+                <div class="number">
+                    <div class="row">
+                        <span><button class="actionBtn">AC</button></span>
+                        <span><button><i class="fa-solid fa-delete-left icon-actions"></i></button></span>
+                        <span><button id="modulus" value="%"><i class="fa-solid fa-percent icon-operators"></i></button></span>
+                        <span><button id="division" value="/"><i class="fa-solid fa-divide icon-operators"></i></button></span>
+                    </div>
+                    <div class="row">
+                        <span><button id="numberSeven" class="numberBtn" value="7">7</button></span>
+                        <span><button id="numberEight" class="numberBtn" value="8">8</button></span>
+                        <span><button id="numberNine" class="numberBtn" value="9">9</button></span>
+                        <span><button id="multiplication" value="*"><i class="fa-solid fa-xmark icon-operators"></i></button></span>
+                    </div>
+                    <div class="row">
+                        <span><button id="numberFour" class="numberBtn" value="4">4</button></span>
+                        <span><button id="numberFive" class="numberBtn" value="5">5</button></span>
+                        <span><button id="numberSix"class="numberBtn" value="6">6</button></span>
+                        <span><button id="subtraction" value="-"><i class="fa-solid fa-minus icon-operators"></i></button></span>
+                    </div>
+                    <div class="row">
+                        <span><button id="numberOne" class="numberBtn" value="1">1</button></span>
+                        <span><button id="numberTwo" class="numberBtn" value="2">2</button></span>
+                        <span><button id="numberThree" class="numberBtn" value="3">3</button></span>
+                        <span><button id="addition" value="+"><i class="fa-solid fa-plus icon-operators"></i></button></span>
+                    </div>
+                    <div class="row">
+                        <span><button id="numberZero" class="numberBtn" value="0">0</button></span>
+                        <span><button id="numberDot" class="numberBtn" value=".">.</button></span>
+                        <span><button id="equals"><i class="fa-solid fa-equals icon-operators"></i></button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let input1= document.querySelector("#input1");
+        let input2= document.querySelector("#input2");
+        let operator= document.querySelector("#operator");
+        let answer = document.querySelector('#answer');
+
+        let initialValue = 0;
+        input1.textContent = initialValue;
+        let firstValue= [];
+        let secondValue= [];
+        let isIconAdded = false; 
+        let isSecondValueStarted= false
+        const numberClick = (event) => {
+            let buttonValue = event.target.value;
+            if (isIconAdded) {
+                input2.textContent += buttonValue;
+                secondValue.push(buttonValue);
+            } else {
+                if (input1.textContent === "0") {
+                input1.textContent = "";
+                }
+                input1.textContent += buttonValue;
+                firstValue.push(buttonValue);
+            }
+        };
+        const operatorClick= (event)=>{
+            let operatorValue = event.target.value;
+            if (operatorValue==='*' && !isIconAdded){
+                operator.innerHTML += '<i class="fa-solid fa-xmark icon-operators operatorOnOutput"></i>';
+                operator.value="*";
+                isIconAdded=true;
+            }
+            if (operatorValue==='%' && !isIconAdded){
+                operator.innerHTML += '<i class="fa-solid fa-percent icon-operators operatorOnOutput"></i>';
+                operator.value="%";
+                isIconAdded=true;
+            }
+            if (operatorValue==='/' && !isIconAdded){
+                operator.innerHTML += '<i class="fa-solid fa-divide icon-operators operatorOnOutput"></i>';
+                operator.value="/";
+                isIconAdded=true;
+            }
+            if (operatorValue==='+' && !isIconAdded){
+                operator.innerHTML += '<i class="fa-solid fa-plus icon-operators operatorOnOutput"></i>';
+                operator.value="+";
+                isIconAdded=true;
+            }
+            if (operatorValue==='-' && !isIconAdded){
+                operator.innerHTML += '<i class="fa-solid fa-minus icon-operators operatorOnOutput">';
+                operator.value="-";
+                isIconAdded=true;
+            }
+
+            }
+
+        const equalClick= ()=>{
+            let result=0;
+            if (operator.value== "*"){
+                result = parseFloat(firstValue.join("")) * parseFloat(secondValue.join(""));
+                answer.textContent+=result;
+            }
+            if (operator.value== "+"){
+                result = parseFloat(firstValue.join("")) + parseFloat(secondValue.join(""));
+                answer.textContent+=result;
+            }
+            if (operator.value== "-"){
+                result = parseFloat(firstValue.join("")) - parseFloat(secondValue.join(""));
+                answer.textContent+=result;
+            }
+            if (operator.value== "/"){
+                result = parseFloat(firstValue.join("")) / parseFloat(secondValue.join(""));
+                answer.textContent+=result;
+            }
+            if (operator.value== "%"){
+                result = parseFloat(firstValue.join("")) % parseFloat(secondValue.join(""));
+                answer.textContent+=result;
+            }
+        }
+
+        /* Numbers */
+        const buttonSeven = document.getElementById('numberSeven');
+        buttonSeven.addEventListener('click', numberClick);
+        const buttonEight = document.getElementById('numberEight');
+        buttonEight.addEventListener('click', numberClick);
+        const buttonNine = document.getElementById('numberNine');
+        buttonNine.addEventListener('click', numberClick);
+        const buttonFour = document.getElementById('numberFour');
+        buttonFour.addEventListener('click', numberClick);
+        const buttonFive = document.getElementById('numberFive');
+        buttonFive.addEventListener('click', numberClick);
+        const buttonSix = document.getElementById('numberSix');
+        buttonSix.addEventListener('click', numberClick);
+        const buttonOne = document.getElementById('numberOne');
+        buttonOne.addEventListener('click', numberClick);
+        const buttonTwo = document.getElementById('numberTwo');
+        buttonTwo.addEventListener('click', numberClick);
+        const buttonThree = document.getElementById('numberThree');
+        buttonThree.addEventListener('click', numberClick);
+        const buttonZero = document.getElementById('numberZero');
+        buttonZero.addEventListener('click', numberClick);
+        const buttonDot = document.getElementById('numberDot');
+        buttonDot.addEventListener('click', numberClick);
+        /* Numbers */
+        
+        /*Operators*/
+        const multiplication= document.getElementById('multiplication');
+        multiplication.addEventListener('click',operatorClick);
+        const addition= document.getElementById('addition');
+        addition.addEventListener('click',operatorClick);
+        const subtraction= document.getElementById('subtraction');
+        subtraction.addEventListener('click',operatorClick);
+        const division= document.getElementById('division');
+        division.addEventListener('click',operatorClick);
+        const modulus= document.getElementById('modulus');
+        modulus.addEventListener('click',operatorClick);
+        const equals= document.getElementById('equals');
+        equals.addEventListener('click',equalClick);
+
+       
+
+
+      </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&family=Roboto:wght@300;500;700&display=swap');:root{
+    --calc-body-color:#22252d;
+    --calc-contentBottom-color:#292d36;
+    --calc-button-color:#272b33;
+    --calc-actionBtn-color:#26f3ce;
+    --calc-operators-color:#e36364;
+    --calc-default-color:#fff;
+    --calc-font-family1: 'Poppins', sans-serif;
+    --calc-font-family2: 'Roboto', sans-serif;;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    /* outline: solid 1px black; */
+    width: 100%;
+    margin-top: 4rem;
+}
+#calc-body{
+    background-color: var(--calc-body-color);
+    height: 550px;
+    width: 320px;
+    overflow: hidden;
+    display: flex;
+    justify-content: end;
+    border-radius: 10px;
+}
+.calc-content{
+    width: 100%;
+
+}
+#calc-body .calc-content .output{
+    display: flex;
+    justify-content: flex-end;
+    height: 200px;
+    width: 100%;
+}
+
+
+#calc-body .calc-content .output .inputField span{
+    margin-top: 2rem;
+    color: var(--calc-default-color);
+    font-family: var(--calc-font-family1);
+    font-weight: 500;
+    font-size: 1.50rem;
+    padding: 3px;
+    position: relative;
+    left: -30px;
+    bottom: -90px;
+
+}
+#calc-body .calc-content .output .answer span{
+    color: var(--calc-default-color);
+    font-family: var(--calc-font-family2);
+    font-weight: 800;
+    font-size: 3rem;
+    padding: 3px;
+
+}
+#calc-body .calc-content .number{
+    background-color: var(--calc-contentBottom-color);
+    height: 100%;
+    border-radius: 30px;
+    padding: 2rem;
+
+}
+
+#calc-body .calc-content .number .row span{
+    padding:5px;
+}
+
+#calc-body .calc-content .number .row span button {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: var(--calc-button-color);
+    border: none;
+}
+#calc-body .calc-content .number .row span button:hover{
+    background: var(--calc-body-color);
+    transition: all 0.3s ease;
+}
+.icon-actions{
+    color: var(--calc-actionBtn-color);
+}
+.icon-operators{
+    color: var(--calc-operators-color);
+}
+
+.numberBtn{
+    font-family: var(--calc-font-family1);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--calc-default-color);
+}
+.actionBtn{
+    font-family: var(--calc-font-family2);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--calc-actionBtn-color);
+}
+.operatorOnOutput{
+    font-size:14px;
+}
